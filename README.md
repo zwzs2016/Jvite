@@ -8,6 +8,10 @@
 
  项目将建立在spring boot的基础之上，完成java web方向和面向对象编程的繁琐进行优化。
 
-- ## 启动项目
+## 启动项目
 
-首先需要完成vue-cli的基础之上，完成前后端项目的分离。具体安装与搭建过程可见vue官网(略)；
+- ### 运行环境
+
+  java jdk 1.8
+
+首先通过spring boot 启动项目 进入Jvite config 配置界面 ["localhost:8090/Jvite"]()
