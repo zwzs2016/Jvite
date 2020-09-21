@@ -4,8 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Application</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            text-align: center;
+        }
+        #config{
+            margin-top: 2rem;
+            position: relative;
+        }
+        #config ul{
+            width: 70%;
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: auto;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
-    <h1>Applicationymlconfig</h1>
+    <div class="header">
+        <h1>Applicationymlconfig</h1>
+    </div>
+    <div id="config">
+        <h2>相关配置</h2>
+        <ul>
+            <li>kkk</li>
+        </ul>
+        <!-- <input @click="get" type="button" value="alert"> -->
+        <button @click="getjson">按钮获取数据</button>
+    </div>
+    
 </body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script>
+    var app=new Vue({
+        el:'#config',
+        data:{
+
+        },
+        mounted(){
+            console.log('ook');
+        },
+        methods:{
+            getjson(){
+                console.log('ok');
+                axios.get('http://localhost:8090/applicationymlconfig/getymlinfo')
+                .then(function (res){
+                    console.log(res.data);
+                })
+            },
+            get: function(){
+                alert('ok');
+            }
+        }
+    });
+</script>
 </html>
