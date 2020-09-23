@@ -12,53 +12,114 @@
         div{
             text-align: center;
         }
+        ul li{
+            list-style: none;
+        }
         #config{
             margin-top: 2rem;
             position: relative;
         }
         #config ul{
             width: 70%;
-            position: absolute;
             left: 0;
             right: 0;
             margin: auto;
             text-align: left;
+            margin-top: 5rem;
+        }
+        button{
+            margin-left: 1rem;
+        }
+        textarea{
+            margin-top: 1rem;
+            font-size: 1.5rem;
+            width: 70%;
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Applicationymlconfig</h1>
+    <div id="app">
+        <div class="header">
+            <h1>Applicationymlconfig</h1>
+        </div>
+        <div id="config">
+            <ul>
+                <a href="./json/application.json" target="_blank">JSONView</a>
+                <a href="/configlist" target="_blank">常用配置</a>
+                <a href="https://www.json2yaml.com/convert-yaml-to-json" target="_blank">yml-json转换</a>
+                <li v-for="(item,index) in items" :key="index">
+                    {{ item }}
+                </li>
+            </ul>
+        </div>
+        <div>
+            <textarea name="" id="" cols="30" rows="10" v-model="ymldata"></textarea>
+        </div>
+        <button @click="getjson">获取数据</button>
+        <button @click="pushdata">更新yml</button>
+        <button @click="updatayml">更新json</button>
+        <button @click="clearcache">清楚缓存</button>
     </div>
-    <div id="config">
-        <h2>相关配置</h2>
-        <ul>
-            <li>kkk</li>
-        </ul>
-        <!-- <input @click="get" type="button" value="alert"> -->
-        <button @click="getjson">按钮获取数据</button>
-    </div>
-    
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <script>
     var app=new Vue({
-        el:'#config',
+        el:'#app',
         data:{
-
+            items:[],
+            ymldata:''
         },
         mounted(){
-            console.log('ook');
+            console.log(this.items.length);
+            console.log(sessionStorage.getItem("jsondata"));
+            if(sessionStorage.getItem("jsondata")){
+                this.items.push(sessionStorage.getItem("jsondata"));
+            }        
         },
         methods:{
             getjson(){
+                var that=this;
                 console.log('ok');
+                if(that.items.length!=0){
+                    return false;
+                }
                 axios.get('http://localhost:8090/applicationymlconfig/getymlinfo')
                 .then(function (res){
-                    console.log(res.data);
+                    sessionStorage.setItem("jsondata",JSON.stringify(res.data));
+                    that.items.push(JSON.stringify(res.data));
+                    console.log(that.items);
                 })
+            },
+            updatayml(){
+                axios.get('http://localhost:8090/applicationymlconfig/getymlinfo')
+                .then(function (res){
+                    alert('已经更新');
+                })
+            },
+            pushdata(){
+                var that=this;
+                axios(
+                    {
+                        method:'post',
+                        url:'http://localhost:8090/applicationymlconfig/setymlinfo',
+                        data:that.ymldata,
+                        headers:{
+                            'content-type': 'text/plain;charset=UTF-8'
+                        }
+                    }
+                )
+                .then(function (res){
+                    console.log(res.data);
+                    alert('更新成功');
+                })
+            },
+            clearcache(){
+                sessionStorage.clear();
+                this.items.length=0;
+                alert('清除成功');
+                location.href="";
             },
             get: function(){
                 alert('ok');

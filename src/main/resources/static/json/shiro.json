@@ -1,0 +1,22 @@
+{
+    "shiro": {
+      "hash-algorithm-name": "md5",
+      "hash-iterations": 2,
+      "login-url": "/index.html",
+      "unauthorized-url": "/unauthorized.html",
+      "anon-urls": [
+        "/api/login/doLogin*",
+        "/api/druid/**",
+        "/api/swagger-ui.html",
+        "/api/webjars/**",
+        "/api/swagger-resources/**",
+        "/api/v2/**",
+        "/api/login/captcha",
+        "/api/login/checkLogin"
+      ],
+      "logout-url": "/api/login/logout*",
+      "authc-urls": [
+        "/**"
+      ]
+    }
+  }

@@ -6,4 +6,5 @@ import org.springframework.stereotype.Service;
 
 public interface ApplicationymlconfigService {
     String jsonfile();
+    void setymlinfo(String ymldata);
 }

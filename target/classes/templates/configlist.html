@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>配置列表</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #app{
+            text-align: center;
+        }
+        h3{
+            margin-bottom: 2rem;
+        }
+        ul{
+            text-align: left;
+            width: 70%;
+            left: 0;
+            right: 0;
+            margin: auto;
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h3>Spring boot</h3>
+        <ul>
+            <li v-for="(item,index) in config" :key="index">
+                <a :href="josnurl(item)" target="_blank">{{item}}</a>
+            </li>
+        </ul>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    var app=new Vue({
+        el:'#app',
+        data:{
+            config:[
+                'datasource.json',
+                'logging.json',
+                'mybaits.json',
+                'redis.json',
+                'shiro.json'
+            ]
+        },
+        computed:{
+            
+        },
+        methods:{
+            josnurl(item){
+                return "./json/"+item;
+            }
+        }
+    })
+</script>
+</html>

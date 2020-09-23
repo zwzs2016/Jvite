@@ -12,6 +12,12 @@
 
 - ### 运行环境
 
-  java jdk 1.8
+  **java jdk 1.8**
 
-首先通过spring boot 启动项目 进入Jvite config 配置界面 ["localhost:8090/Jvite"]()
+spring boot 启动项目 进入Jvite config 配置界面 ["localhost:8090/Jvite"]()
+
+- 配置json-view
+
+  [localhost:8090/Jvite]()，进入后即可安装Json-view
+
+  
