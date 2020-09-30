@@ -20,6 +20,8 @@ spring boot 启动项目 进入Jvite config 配置界面 ["localhost:8090/Jvite"
 
   [localhost:8090/Jvite]()，进入后即可安装Json-view
 
+  
+
 - 文件的配置
 
   ProjectConfiguration.class 创建一个可以配置文件的class,通过注解的形式:
@@ -50,4 +52,16 @@ spring boot 启动项目 进入Jvite config 配置界面 ["localhost:8090/Jvite"
   ```
   @JviteJsonFileName("server")
   private String servernode;
+  ```
+
+
+
+- 配置文件的生成
+
+  使用BuildConfiguration,实例化BuildConfiguration，参数为ProjectConfiguration对象 例如:
+
+  ```
+  ProjectConfiguration pro=new ProjectConfiguration();
+  BuildConfiguration.filename="src/main/resources/static/yml/application.yml";//设置文件输出文件名
+  BuildConfiguration buildConfiguration = new BuildConfiguration(pro);
   ```
