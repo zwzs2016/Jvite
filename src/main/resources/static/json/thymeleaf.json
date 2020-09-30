@@ -1,0 +1,9 @@
+{
+  "thymeleaf": {
+    "prefix": "classpath:/templates/",
+    "suffix": ".html",
+    "mode": "HTML5",
+    "content-type": "text/html",
+    "cache": false
+  }
+}

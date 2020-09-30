@@ -1,6 +1,5 @@
 package zwzs2016.com.github.AppController;
 
-import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -47,12 +46,6 @@ public class PageController {
     @ResponseBody
     public String getymlinfo(){
         return ymlconfigService.jsonfile();
-    }
-    @RequestMapping("/jsontest")
-    @ResponseBody
-    public String jsonstr(){
-        String resultString = "{\"result\":true}";
-        return resultString;
     }
     @CrossOrigin
     @RequestMapping("/applicationymlconfig/setymlinfo")

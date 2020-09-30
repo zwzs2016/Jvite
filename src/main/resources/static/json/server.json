@@ -1,0 +1,6 @@
+{
+  "servlet": {
+    "context-path": "/"
+  },
+  "port": 8090
+}

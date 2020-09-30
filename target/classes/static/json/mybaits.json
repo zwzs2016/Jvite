@@ -1,8 +1,6 @@
 {
-    "mybatis": {
-      "type-aliases-package": "ssm.app.model",
-      "configuration": {
-        "map-underscore-to-camel-case": true
-      }
+    "type-aliases-package": "ssm.app.model",
+    "configuration": {
+      "map-underscore-to-camel-case": true
     }
   }

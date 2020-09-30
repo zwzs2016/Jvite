@@ -2,7 +2,6 @@ package zwzs2016.com.github.AppService.Impl;
 
 import com.alibaba.fastjson.JSONObject;
 import org.junit.Test;
-import org.springframework.boot.json.YamlJsonParser;
 import org.springframework.stereotype.Service;
 import org.yaml.snakeyaml.Yaml;
 import zwzs2016.com.github.AppService.ApplicationymlconfigService;
@@ -16,6 +15,7 @@ public class ApplicationymlconfigServiceImpl implements ApplicationymlconfigServ
         String dump="";
         Object json=new Object();
         Yaml yaml=new Yaml();
+        JSONObject jsonObject=new JSONObject();
         try {
             File file = new File("src/main/resources/application.yml");
             if (file==null){
