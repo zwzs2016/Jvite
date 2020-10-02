@@ -2,7 +2,6 @@ package zwzs2016.com.github.AppConfig;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.junit.Test;
 import zwzs2016.com.github.AppAnnotations.JviteAfterType;
 import zwzs2016.com.github.AppAnnotations.JviteConfig;
 import zwzs2016.com.github.AppAnnotations.JviteJsonFileName;
@@ -28,6 +27,9 @@ public class ProjectConfiguration {
     @JviteJsonFileName("redis")
     private String redisnode;
 
+    @JviteJsonFileName("logging")
+    private String loggingnode;
+
     @JviteAfterType("spring")
     private List<String> spring;
 
@@ -36,6 +38,9 @@ public class ProjectConfiguration {
 
     @JviteAfterType("server")
     private List<String> server;
+
+    @JviteAfterType("logging")
+    private List<String> logging;
 
     public void setSpring(){
         this.spring=new ArrayList<>();
@@ -54,10 +59,15 @@ public class ProjectConfiguration {
         this.server.add(this.servernode);
     }
 
-    @Test
-    public void test(){
-        ProjectConfiguration pro=new ProjectConfiguration();
-//        BuildConfiguration.filename="src/main/resources/static/yml/application.yml";
-        BuildConfiguration buildConfiguration = new BuildConfiguration(pro);
+    public void setLogging(){
+        logging=new ArrayList<>();
+        logging.add(loggingnode);
     }
+
+//    @Test
+//    public void test(){
+//        ProjectConfiguration pro=new ProjectConfiguration();
+//        BuildConfiguration.filename="src/main/resources/static/yml/application.yml";
+//        BuildConfiguration buildConfiguration = new BuildConfiguration(pro);
+//    }
 }

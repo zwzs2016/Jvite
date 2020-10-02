@@ -12,11 +12,15 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
+import java.util.logging.Logger;
 
-public class BuildConfiguration {
+public final class BuildConfiguration {
     public static String filename="src/main/resources/application.yml";
-
+    private static Long lastTime;
+    private Logger log = Logger.getLogger(BuildConfiguration.class.getPackage().getName()+".BuildConfiguration");
     public BuildConfiguration(ProjectConfiguration pro) {
+        String filename=this.filename;
+        File file=new File(filename);
         JviteConfig jviteConfig = pro.getClass().getAnnotation(JviteConfig.class);
         Field[] fields = pro.getClass().getDeclaredFields();
         JSONObject jsonObject=new JSONObject();
@@ -45,24 +49,24 @@ public class BuildConfiguration {
                     List<String> filenamelist=(List<String>)invoke;
                     JSONObject Json=new JSONObject();
                     int time=0;
-                    String jsoncontext="";
-                    for (String filename:filenamelist){
-                        String jsonstr="";
-                        String filepath=jviteConfig.value()+filename+".json";
+                    StringBuilder jsoncontext=new StringBuilder();
+                    for (String jsonfilename:filenamelist){
+                        StringBuilder jsonstr=new StringBuilder();
+                        String filepath=jviteConfig.value()+jsonfilename+".json";
                         jsonwirte=new BufferedReader(new FileReader(new File(filepath)));
                         String str;
                         while ((str=jsonwirte.readLine())!=null){
-                            jsonstr+=str;
+                            jsonstr.append(str);
                         }
                         if (time<filenamelist.size()-1){
-                            jsoncontext+=jsonstr.substring(1,jsonstr.length()-1)+",";
+                            jsoncontext.append(jsonstr.substring(1,jsonstr.length()-1)+",");
                             time++;
                         }else {
-                            jsoncontext+=jsonstr.substring(1,jsonstr.length()-1);
+                            jsoncontext.append(jsonstr.substring(1,jsonstr.length()-1));
                         }
                     }
-                    jsoncontext="{"+jsoncontext+"}";
-                    Json=JSONObject.parseObject(jsoncontext);
+                    jsoncontext.insert(0,"{").append("}");
+                    Json=JSONObject.parseObject(String.valueOf(jsoncontext));
                     jsonObject.put(jviteAfterType.value(),Json);
                 } catch (NoSuchMethodException e) {
                     e.printStackTrace();
@@ -84,7 +88,6 @@ public class BuildConfiguration {
             }
         }
         String ymldata=yaml.dump(yaml.load(jsonObject.toString()));
-        String filename=this.filename;
         try {
             FileWriter ymlwirte=new FileWriter(filename);
             ymlwirte.write(ymldata);
@@ -92,6 +95,6 @@ public class BuildConfiguration {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
+        log.info("Configuration File Created Successfully");
+        }
 }

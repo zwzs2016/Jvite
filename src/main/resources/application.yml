@@ -1,5 +1,7 @@
+logging:
+  level: {ssm.app.mapper: debug}
 redis:
-  host: 127.0.0.1:7963
+  host: 127.0.0.1
   jedis:
     pool: {max-active: 20, max-idle: 8, max-wait: 2000, min-idle: 0}
   password: ''
