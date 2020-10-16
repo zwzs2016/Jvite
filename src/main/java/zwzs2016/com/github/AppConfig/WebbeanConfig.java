@@ -12,7 +12,15 @@ public class WebbeanConfig {
         return new ProjectConfiguration();
     }
     @Bean
-    public BuildConfiguration buildConfiguration(ProjectConfiguration pro){
+    public ProjectConfiguration_yml projectConfiguration_yml(){
+        return new ProjectConfiguration_yml();
+    }
+    @Bean
+    public ProjectConfiguration_properties projectConfiguration_properties(){
+        return new ProjectConfiguration_properties();
+    }
+    @Bean
+    public BuildConfiguration buildConfiguration(ProjectConfiguration_yml pro){
         BuildConfiguration.filename="src/main/resources/application.yml";
         return new BuildConfiguration(pro);
     }

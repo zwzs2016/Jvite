@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import zwzs2016.com.github.AppService.ApplicationymlconfigService;
+import zwzs2016.com.github.AppService.RedisService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
@@ -19,6 +20,9 @@ import java.io.InputStreamReader;
 public class PageController {
     @Autowired
     ApplicationymlconfigService ymlconfigService;
+
+    @Autowired
+    RedisService redisService;
 
     @GetMapping("/")
     @ResponseBody
@@ -65,5 +69,12 @@ public class PageController {
             e.printStackTrace();
         }
         return "ok";
+    }
+
+    @GetMapping("/redistest")
+    @ResponseBody
+    public String redistest(){
+        String str = redisService.redisconntest();
+        return str;
     }
 }
