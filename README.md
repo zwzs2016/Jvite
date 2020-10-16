@@ -38,29 +38,23 @@ spring boot 启动项目 进入Jvite config 配置界面 ["localhost:8090/Jvite"
 
   ***通过json文件配置:***
 
-  
-
   **@JviteAfterType**
-  
+
   ​	定义配置文件的根节点，参数为节点名字 例如:
   
-```
+  ```
   @JviteAfterType("spring")
 private List<String> spring;
   ```
 
-  
-  
   **@JviteJsonFileName**
-  
+
   ​	定义json配置文件的文件名，参数为文件名 例如:
   
   ```
   @JviteJsonFileName("server")
   private String servernode;
   ```
-  
-  
   
   ***通过yml文件配置:***
   
@@ -72,8 +66,6 @@ private List<String> spring;
   @JviteYmlFileName("server")
   private String server;
   ```
-  
-  
   
   ***通过properties文件配置:***
   
